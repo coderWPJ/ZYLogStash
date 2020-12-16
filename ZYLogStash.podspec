@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = "ZYLogStash"
-  s.version = "2"
+  s.version = "0.0.2"
   s.summary = "ZYLogStash"
   s.homepage = "https://github.com/coderWPJ"
   s.license= "MIT"
