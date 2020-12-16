@@ -1,0 +1,23 @@
+PODS:
+  - Masonry (1.1.0)
+  - ZYLogStash (0.0.1)
+
+DEPENDENCIES:
+  - Masonry
+  - ZYLogStash (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Masonry
+
+EXTERNAL SOURCES:
+  ZYLogStash:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  ZYLogStash: f4baa89caed8da13e5f430240ce77c6289c2bb2c
+
+PODFILE CHECKSUM: 35eea4371c6bd8384c20cf4e12ad5f0d1f8c9f40
+
+COCOAPODS: 1.9.3
