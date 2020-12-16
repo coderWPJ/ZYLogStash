@@ -14,50 +14,50 @@ version=`echo ${versionLine} | cut -d '"' -f 2`
 versionLineNumber=`grep -nE 's.version.*=' ${targetSpecFileName} | cut -d : -f1`
 
 ### 实现版本号的自增+1
-versionStr=${version}
-let versionNum=0
-for((i=0;i<${#versionStr};i++))
-do
-    subNum=`echo "${versionStr:$i:1}"`
-    if [ "${subNum}" != '.' ];
-    then
-        let value=$((versionNum))*10+$((subNum))
-        versionNum="${value}"
-    fi
-done
-let targetVersionNum=versionNum+1
-targetVersionTemp=${targetVersionNum}
+#versionStr=${version}
+#let versionNum=0
+#for((i=0;i<${#versionStr};i++))
+#do
+#    subNum=`echo "${versionStr:$i:1}"`
+#    if [ "${subNum}" != '.' ];
+#    then
+#        let value=$((versionNum))*10+$((subNum))
+#        versionNum="${value}"
+#    fi
+#done
+#let targetVersionNum=versionNum+1
+#targetVersionTemp=${targetVersionNum}
 
-targetVersionStr=""
-let targetLength=${#targetVersionTemp}
-for((idx=0;idx<targetLength;idx++))
-do
-    subNum=`echo "${targetVersionTemp:$idx:1}"`
-    let lastValue=targetLength-1 
-    if [ "${subNum}" != '.' ]; then
-        if [ ${idx} -gt 0 ]
-        then
-            targetVersionStr="${targetVersionStr}.${subNum}"
-        else
-            targetVersionStr="${subNum}"
-        fi
-    fi
-done
+#targetVersionStr=""
+#let targetLength=${#targetVersionTemp}
+#for((idx=0;idx<targetLength;idx++))
+#do
+#    subNum=`echo "${targetVersionTemp:$idx:1}"`
+#    let lastValue=targetLength-1 
+#    if [ "${subNum}" != '.' ]; then
+#        if [ ${idx} -gt 0 ]
+#        then
+#            targetVersionStr="${targetVersionStr}.${subNum}"
+#        else
+#            targetVersionStr="${subNum}"
+#        fi
+#    fi
+#done
 
 
-sed -i "" "${versionLineNumber}s/${versionStr}/${targetVersionStr}/g" ${targetSpecFileName}
-echo "版本号：  ${versionStr} >>>>>> 更新到 >>>>>> ${targetVersionStr}"
+#sed -i "" "${versionLineNumber}s/${versionStr}/${targetVersionStr}/g" ${targetSpecFileName}
+#echo "版本号：  ${versionStr} >>>>>> 更新到 >>>>>> ${targetVersionStr}"
 
 # git 操作
 git add --all
-git commit -am "Commit ${targetVersionStr}"
-git tag ${targetVersionStr}
+git commit -am "Commit ${version}"
+git tag ${version}
 git push origin master --tags
 
 # 推送spec文件
 echo "开始推送spec文件 ${targetSpecFileName}"
 pod trunk push ./${targetSpecFileName} --verbose --use-libraries --allow-warnings
 
-echo "版本已更新至 ${targetVersionStr}，请在repo repo update 后操作"
+echo "🎉🎉🎉🎉🎉🎉 版本已更新至 ${targetVersionStr}，请在repo repo update 后操作"
 
 exit 0
