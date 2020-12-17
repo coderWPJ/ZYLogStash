@@ -33,6 +33,8 @@
     [logBtn setTitle:@"logVC" forState:UIControlStateNormal];
     [logBtn addTarget:self action:@selector(enterLogPage) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:logBtn];
+    
+    
 }
 
 - (void)enterLogPage{

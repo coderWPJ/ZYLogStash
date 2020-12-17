@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
+FOUNDATION_EXTERN NSString *const ZYLogStashTaskService_Common;
 
 typedef NS_ENUM(NSInteger, ZYLogStashStoreLevel) {
     ZYLogStashStoreLevel_Manual = 0,
@@ -26,9 +27,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, copy, readonly) NSString *taskId;
 
-@property (nonatomic, copy) NSString *filePath;
+@property (nonatomic, copy, readonly) NSString *service;
 
-@property (nonatomic, assign) ZYLogStashStoreLevel storeLevel;
+@property (nonatomic, copy, readonly) NSString *filePath;
+
+@property (nonatomic, assign, readonly) ZYLogStashStoreLevel storeLevel;
 
 /// record
 - (BOOL)record:(nonnull NSString *)content;
@@ -39,11 +42,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)finish;
 
-+ (instancetype)logTask:(NSString *)filePath storeLevel:(ZYLogStashStoreLevel)storeLevel;
++ (instancetype)logTask:(nullable NSString *)service
+               filePath:(nullable NSString *)filePath
+             storeLevel:(ZYLogStashStoreLevel)storeLevel;
 
 + (NSString *)cacheFilePathInSandbox;
 + (NSString *)defaultLogDirectoryPath;
 + (NSString *)randomFilePath;
+
+- (BOOL)isValuable;
 
 @end
 

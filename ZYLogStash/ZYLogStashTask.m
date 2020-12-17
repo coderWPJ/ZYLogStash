@@ -9,13 +9,22 @@
 
 #import <stdio.h>
 
+NSString *const ZYLogStashTaskService_Common = @"__commmon_log__";
+
 @interface ZYLogStashTask ()
 {
     double _lastSyncTimestamp;
     
     FILE *_file;
 }
+
 @property (nonatomic, copy, readwrite) NSString *taskId;
+
+@property (nonatomic, copy, readwrite) NSString *service;
+
+@property (nonatomic, copy, readwrite) NSString *filePath;
+
+@property (nonatomic, assign, readwrite) ZYLogStashStoreLevel storeLevel;
 
 @property (nonatomic, assign) double syncInterval;
 
@@ -25,15 +34,20 @@
 
 @implementation ZYLogStashTask
 
-+ (instancetype)logTask:(NSString *)filePath storeLevel:(ZYLogStashStoreLevel)storeLevel{
-    return [[ZYLogStashTask alloc] initWithFilePath:filePath storeLevel:storeLevel];
++ (instancetype)logTask:(nullable NSString *)service
+               filePath:(nullable NSString *)filePath
+             storeLevel:(ZYLogStashStoreLevel)storeLevel {
+    return [[ZYLogStashTask alloc] initWithService:service filePath:filePath storeLevel:storeLevel];
 }
 
-- (instancetype)initWithFilePath:(NSString *)filePath storeLevel:(ZYLogStashStoreLevel)storeLevel{
+- (instancetype)initWithService:(nullable NSString *)service
+                       filePath:(nullable NSString *)filePath
+                     storeLevel:(ZYLogStashStoreLevel)storeLevel{
     self = [super init];
     if (self) {
         [self resetLastSyncTimestamp];
         
+        self.service = service;
         self.filePath = filePath;
         self.storeLevel = storeLevel;
         self.taskId = [ZYLogStashTask uuidString];
@@ -43,9 +57,31 @@
     return self;
 }
 
+- (BOOL)isValuable{
+    if (!self.filePath || (self.filePath.length == 0)) {
+        return NO;
+    }
+    if (!self.service || (self.service.length == 0)) {
+        return NO;
+    }
+    if (!self.taskId || (self.taskId.length == 0)) {
+        return NO;
+    }
+    return YES;
+}
 - (void)finish{
     self.contents = nil;
     [self closeFile];
+    if (self.filePath && (self.filePath.length > 0)) {
+        BOOL isDirectory = NO;
+        BOOL isExist = [NSFileManager.defaultManager fileExistsAtPath:self.filePath isDirectory:&isDirectory];
+        if (isExist && !isDirectory) {
+            NSData *data = [NSData dataWithContentsOfFile:self.filePath];
+            if (data.length == 0) {
+                unlink(self.filePath.UTF8String);
+            }
+        }
+    }
 }
 
 - (BOOL)openFile{

@@ -13,13 +13,22 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface ZYLogger : NSObject
 
-+ (NSString *)registLogTask:(nullable NSString *)filePath
+/// 获取对应服务下的 log 任务id
++ (NSArray <NSString *>*)logTaskIdsInService:(NSString *)service;
+
+/// 注册log任务，service不传会用默认服务，filePath不传会在默认log文件夹内生成随机名称的log文件
++ (NSString *)registLogTask:(nullable NSString *)service
+                   filePath:(nullable NSString *)filePath
                  storeLevel:(ZYLogStashStoreLevel)storeLevel;
 
 
-+ (BOOL)store:(nonnull NSString *)logRecord inTask:(nonnull NSString *)taskId;
 
+/// 记录log
++ (BOOL)store:(nonnull NSString *)logRecord inTask:(nonnull NSString *)taskId;
+/// 结束log任务
 + (BOOL)finishLogTask:(nonnull NSString *)taskId;
+
+
 
 + (instancetype)logger;
 
