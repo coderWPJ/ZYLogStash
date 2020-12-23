@@ -9,7 +9,11 @@
 #import "ZYSandBoxFileExplorerVC.h"
 #import "LogTestVC.h"
 
+#import "TestView.h"
+
 @interface ViewController ()
+
+@property (nonatomic, strong) TestView *testView;
 
 @end
 
@@ -34,7 +38,15 @@
     [logBtn addTarget:self action:@selector(enterLogPage) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:logBtn];
     
+    _testView = [[TestView alloc] init];
+    _testView.frame = CGRectMake(100, 300, 300, 300);
+    [self.view addSubview:_testView];
     
+}
+
+
+- (NSNumber *)retCount{
+    return @1;
 }
 
 - (void)enterLogPage{

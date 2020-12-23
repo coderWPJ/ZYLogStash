@@ -166,7 +166,7 @@ NSString *const ZYLogStashTaskService_Common = @"__commmon_log__";
                 if (!putsResult) {
                     status = 2;
                 }
-                NSLog(@"字符串写入结果：%@", putsResult?@"成功":@"失败");
+//                NSLog(@"字符串写入结果：%@", putsResult?@"成功":@"失败");
             }
             [self.contents removeAllObjects];
         }

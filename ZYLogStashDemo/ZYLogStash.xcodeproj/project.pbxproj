@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		945B99BE258B7A350015F206 /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 945B99BD258B7A350015F206 /* TestView.m */; };
 		94950D5C25885BC9002C4F23 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94950D5B25885BC9002C4F23 /* AppDelegate.m */; };
 		94950D5F25885BC9002C4F23 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94950D5E25885BC9002C4F23 /* SceneDelegate.m */; };
 		94950D6225885BC9002C4F23 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94950D6125885BC9002C4F23 /* ViewController.m */; };
@@ -23,6 +24,8 @@
 /* Begin PBXFileReference section */
 		219DA0D778D3DF654E6F7D81 /* Pods-ZYLogStash.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZYLogStash.debug.xcconfig"; path = "Target Support Files/Pods-ZYLogStash/Pods-ZYLogStash.debug.xcconfig"; sourceTree = "<group>"; };
 		6F6F3B82A66D843A2B10E810 /* Pods-ZYLogStash.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ZYLogStash.release.xcconfig"; path = "Target Support Files/Pods-ZYLogStash/Pods-ZYLogStash.release.xcconfig"; sourceTree = "<group>"; };
+		945B99BC258B7A350015F206 /* TestView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
+		945B99BD258B7A350015F206 /* TestView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
 		94950D5725885BC9002C4F23 /* ZYLogStash.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZYLogStash.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94950D5A25885BC9002C4F23 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		94950D5B25885BC9002C4F23 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -102,6 +105,8 @@
 				94950D6125885BC9002C4F23 /* ViewController.m */,
 				94950D892589A5E9002C4F23 /* LogTestVC.h */,
 				94950D8A2589A5E9002C4F23 /* LogTestVC.m */,
+				945B99BC258B7A350015F206 /* TestView.h */,
+				945B99BD258B7A350015F206 /* TestView.m */,
 				94950D7C25899FF9002C4F23 /* ZYFileExplorer */,
 				94950D6325885BC9002C4F23 /* Main.storyboard */,
 				94950D6625885BCB002C4F23 /* Assets.xcassets */,
@@ -218,6 +223,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				945B99BE258B7A350015F206 /* TestView.m in Sources */,
 				94950D6225885BC9002C4F23 /* ViewController.m in Sources */,
 				94950D8125899FF9002C4F23 /* ZTTXTReaderVC.m in Sources */,
 				94950D8225899FF9002C4F23 /* ZYSandBoxFileExplorerVC.m in Sources */,
